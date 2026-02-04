@@ -3,8 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 @media only screen and (min-width: 390px) and (max-width: 844px) {
- 
+
 body {
     font-family: Poppins, sans-serif;
     background: #f5f5f5;
@@ -13,7 +14,6 @@ body {
 
 .profile-card {
     width: 100%;
-    background: white;
     overflow: hidden;
 }
 
@@ -24,8 +24,13 @@ body {
     object-fit: cover;
 }
 
+
 .profile-content {
+    background: #ffffff;
+    border-radius: 40px 40px 0 0;
     position: relative;
+    top: -45px;
+    width: 100%;
     padding: 70px 40px 40px;
 }
 
@@ -34,22 +39,17 @@ body {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: top;
     position: absolute;
     top: -60px;
     left: 40px;
-    border: 6px solid white;
+    border: 2px solid #ffffff;
 }
 
-.name {
-    color: #0D38A3;
-    font-size: 27px;
-    font-weight: 500;
-    margin-bottom: 20px;
-}
 
 .follow-btn {
     background: #0D38A3;
-    color: white;
+    color: #93B4E9;
     border: none;
     padding: 10px 30px;
     border-radius: 12px;
@@ -58,17 +58,40 @@ body {
     margin-bottom: 30px;
 }
 
-.follow {
+.follow-btn:hover {
+    background-color: #080D58;
+    color: #ffffff;
+}
+
+
+.infos {
+    position: absolute;
+    top: 18px;
+    left: 190px; 
     display: flex;
-    gap: 50px;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.name {
+    color: #0D38A3;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.stats-row {
+    margin-left: 10px;
+    display: flex;
+    gap: 40px;
 }
 
 .stats {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .number {
-    display: block;
     color: #0D38A3;
     font-size: 24px;
     font-weight: 600;
@@ -78,4 +101,5 @@ body {
     color: #0D38A3;
     font-size: 14px;
 }
+
 }
