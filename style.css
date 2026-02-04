@@ -1,0 +1,40 @@
+/* On empêche les marges par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* On centre l'écran iPhone dans le navigateur */
+body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Écran iPhone 13 */
+.iphone {
+    width: 390px;
+    height: 844px;
+
+    background-image: url("image_banc.svg");
+    background-size: cover;       /* Remplit tout l'écran */
+    background-position: center;  /* Centre l'image */
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.image-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;   /* 🔥 prend toute la largeur de l'iPhone */
+    height: auto;
+
+    z-index: 10;
+}
