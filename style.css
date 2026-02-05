@@ -24,9 +24,9 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Toujours au-dessus de tout */
+    z-index: 9999; /* Toujours au-dessus de tout 
     transition: opacity 0.8s ease-out, visibility 0.8s;
-}
+}*/
 
 #logo_anim {
     width: 250px; /* Ajuste la taille de ton logo */
@@ -154,6 +154,5 @@ html, body {
 
 
 }
-
 
 }
