@@ -1,0 +1,148 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* IPHONE */
+.iphone {
+    width: 390px;
+    height: 844px;
+    position: relative;
+    overflow: hidden;
+    background: black;
+}
+
+/* CARTE */
+#map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* UI AU-DESSUS */
+.iphone > *:not(#map) {
+    position: absolute;
+    z-index: 10;
+}
+
+/* BARRE GLASS */
+.image-bottom {
+    bottom: -1px;
+    left: 0;
+    width: 390px;
+    height: 164px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    clip-path: path("M196.176 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390V163H0V63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562V0H196.176V0.000976562Z");
+    border-top: 1px solid rgba(255,255,255,0.4);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* PROFIL */
+.btn-bottom img {
+    width: 31px;
+    position: absolute;
+    bottom: 35px;
+    left: 200px;
+}
+
+/* CARTE BTN */
+.btn-map {
+    bottom: -4px;
+    right: 0;
+}
+
+.btn-map img {
+    width: 101px;
+}
+
+/* PLUS */
+.btn-plus {
+    bottom: 119px;
+    left: 17px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+}
+
+.plus-icon {
+    bottom: 128px;
+    left: 26px;
+    width: 22px;
+}
+
+/* PHOTO */
+.btn-photo {
+    width: 50px;
+    bottom: 94px;
+    left: 171px;
+}
+
+/* PLAY */
+.button {
+    width: 40px;
+    height: 40px;
+    background-color: #FFDBBB;
+    border-radius: 50%;
+    border: none;
+    bottom: 99px;
+    left: 176px;
+    transition: 0.4s;
+}
+
+.button.active {
+    transform: scale(0.6);
+    border-radius: 6px;
+}
+
+/* SCROLL */
+.container-horizontal {
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 22px;
+    bottom: 30px;
+    left: 104px;
+    width: 185px;
+    padding: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.container-horizontal::-webkit-scrollbar {
+    display: none;
+}
+
+.container-horizontal button {
+    background: none;
+    border: none;
+    margin-right: 20px;
+    font-size: 16px;
+    color: white;
+}
+
+/* GLASS */
+.glass {
+    bottom: 34px;
+    left: 145px;
+    width: 105px;
+    height: 34px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+}
