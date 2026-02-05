@@ -57,8 +57,8 @@ html, body {
 }
 
 .nav_bottom {
-    position: absolute;
-    bottom: 155px;
+    position: fixed;
+    bottom: 0;
     left: 0;
 
     width: 100%;
