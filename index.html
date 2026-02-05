@@ -5,53 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoVies</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div class="iphone">
-
-
-    <video id="bgVideo" muted playsinline>
+<div class="homepage_content">
+    <video class="bgVideo" id="bgVideo" autoplay muted  playsinline>
         <source src="./video3.mp4" type="video/mp4">
     </video> 
 
-    <div class="image-bottom">
+    <div class="nav_bottom">
 
-         <button>
-        <a href="./profil.html" class="btn-bottom">
-            <img src="./profil_icon.svg" alt="">
+        <svg class="nav-shape" viewBox="0 0 390 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M196.176 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390V163H0V63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562V0H196.176V0.000976562Z" 
+                  fill="rgba(0, 0, 0, 0.3)" />
+            <path d="M0 63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390" 
+                  stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" fill="none" />
+        </svg>
+
+        <div class="btn_profil">
+        <a href="./profil.html" class="btn-profil">
+            <img src="./profil_icon.svg" alt="profil">
         </a>
-        </button>
-    </div>
+</div>
 
+<div class="btn_map">
+    <a href="#" class="btn-map">
+        <img src="./carte.png" alt="carte">
+    </a>
+</div>
+    
+<div class="btn_plus">
+        <img src="./plus_icon.png" class="plus-icon" alt="plus"> 
+    </div>
+  
+    <div class="btn_fond"></div>
+<button class="btn_play" onclick="toggleButton(this)">
+  <div class="btn_circle"></div>
+</button>
     
 
-    <!-- Bouton carte -->
-    <a href="#" class="btn-map">
-        <img src="./carte.png" alt="">
-    </a>
-
-    <!-- Bouton plus -->
-    <a href="#" class="btn-plus"></a>
-    <img src="./plus.png" class="plus-icon" alt="">
-
-    <!-- Bouton photo -->
-    <img src="./btn_photo.png" class="btn-photo" alt="">
-
-    <!-- Bouton play / pause -->
-    <button class="button" onclick="toggleButton(this)"></button>
-
-     <!-- Bouton scroll -->
     <div class="container-horizontal">
         <button>Personnel</button>
         <button>Historique</button>
         <button>Tous</button>
+        <div class="glass-indicator"></div>
     </div>
-    <button class="glass"></button>
 </div>
-
-
+</div>
 
 
 <script>
@@ -59,7 +59,6 @@ const video = document.getElementById("bgVideo");
 
 function toggleButton(btn) {
     btn.classList.toggle("active");
-
     if (video.paused) {
         video.play();
     } else {
@@ -67,7 +66,6 @@ function toggleButton(btn) {
     }
 }
 </script>
-
 
 </body>
 </html>
