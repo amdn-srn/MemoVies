@@ -14,6 +14,32 @@ html, body {
 
 @media only screen and (min-width: 390px) and (max-width: 844px) {
  
+#splash_screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dégradé qui rappelle ton interface */
+    background: linear-gradient(180deg, #FD8550 0%, #93B4E9 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Toujours au-dessus de tout */
+    transition: opacity 0.8s ease-out, visibility 0.8s;
+}
+
+#logo_anim {
+    width: 250px; /* Ajuste la taille de ton logo */
+    height: auto;
+}
+
+/* Classe qui sera ajoutée en JS pour faire disparaître l'écran */
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .homepage_content {
    position: relative;
     width: 100%;
@@ -29,6 +55,25 @@ html, body {
     height: 100%;
     object-fit: cover;
     z-index: -1;
+}
+
+.nav_bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 160px;
+
+    z-index: 10;
+
+}
+
+.nav-shape{
+  box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn_map {
@@ -110,5 +155,6 @@ html, body {
 
 
 }
+
 
 }

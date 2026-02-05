@@ -8,6 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div id="splash_screen">
+    <video id="logo_anim" muted playsinline>
+        <source src="./logo_anim.mp4" type="video/mp4">
+        </video>
+    </div>
+
 <div class="homepage_content">
     <video class="bgVideo" id="bgVideo" autoplay muted  playsinline>
         <source src="./video3.mp4" type="video/mp4">
@@ -55,6 +62,22 @@
 
 
 <script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    const splash = document.getElementById('splash_screen');
+    const logoVideo = document.getElementById('logo_anim');
+
+    logoVideo.play();
+
+    logoVideo.onended = () => {
+        splash.classList.add('fade-out');
+        
+        const mainVideo = document.getElementById('bgVideo');
+        if (mainVideo) mainVideo.play();
+    };
+});
+
+
 const video = document.getElementById("bgVideo");
 
 function toggleButton(btn) {
