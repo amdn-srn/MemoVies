@@ -48,19 +48,14 @@ body {
 
 
 .follow-btn {
-    background: #0D38A3;
-    color: #93B4E9;
+    background: #93B4E9;
+    color: #0D38A3;
     border: none;
     padding: 10px 30px;
     border-radius: 12px;
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 30px;
-}
-
-.follow-btn:hover {
-    background-color: #080D58;
-    color: #ffffff;
 }
 
 
