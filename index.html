@@ -1,93 +1,95 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MemoVies</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>MemoVies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="splash_screen">
-    <video id="logo_anim" muted playsinline>
-        <source src="./logo_anim.mp4" type="video/mp4">
-        </video>
-    </div>
+<div class="iphone">
 
-<div class="homepage_content">
-    <video class="bgVideo" id="bgVideo" autoplay muted  playsinline>
-        <source src="./video3.mp4" type="video/mp4">
-    </video> 
+    <!-- Vidéo background -->
+    <video id="bgVideo" muted playsinline>
+        <source src="video5.mp4" type="video/mp4">
+    </video> 
 
-    <div class="nav_bottom">
+    <a href="slide.html" class="goutte">
+            <img src="Vector.svg" alt="">
+        </a>
 
-        <svg class="nav-shape" viewBox="0 0 390 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M196.176 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390V163H0V63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562V0H196.176V0.000976562Z" 
-                  fill="rgba(0, 0, 0, 0.3)" />
-            <path d="M0 63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390" 
-                  stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" fill="none" />
-        </svg>
+    <!-- BARRE GLASS (forme Figma) -->
+    <div class="image-bottom">
+        <!-- Bouton profil -->
+        <a href="profil.html" class="btn-bottom">
+            <img src="profil_icon.svg" alt="">
+        </a>
+        
+    </div>
 
-        <div class="btn_profil">
-        <a href="./profil.html" class="btn-profil">
-            <img src="./profil_icon.svg" alt="profil">
-        </a>
+    
+
+    <!-- Bouton carte -->
+    <a href="maps.html" class="btn-map">
+        <img src="carte.png" alt="">
+    </a>
+
+   
+    <!-- Bouton photo -->
+    <img src="btn_photo.png" class="btn-photo" alt="">
+
+    <!-- Bouton play / pause -->
+    <button class="button" onclick="toggleButton(this)"></button>
+
+     <!-- Bouton scroll -->
+    <div class="container-horizontal">
+        <button class="tab">Personnel</button>
+        <button class="tab">Historique</button>
+        <button class="tab">Tous</button>
+    </div>
+
+
 </div>
-
-<div class="btn_map">
-    <a href="./maps.html" class="btn-map">
-        <img src="./carte.png" alt="carte">
-    </a>
-</div>
-    
-<div class="btn_plus">
-        <img src="./plus_icon.png" class="plus-icon" alt="plus"> 
-    </div>
-   class="btn_fond"></div>
-<button class="btn_play" >
-  <a href="./index.html" class="btn_circle"></a>
-</button>
-    
-
-    <div class="container-horizontal">
-        <button>Personnel</button>
-        <button>Historique</button>
-        <button>Tous</button>
-        <div class="glass-indicator"></div>
-    </div>
-</div>
-</div>
-
 
 <script>
-
-document.addEventListener("DOMContentLoaded", () => {
-    const splash = document.getElementById('splash_screen');
-    const logoVideo = document.getElementById('logo_anim');
-
-    logoVideo.play();
-
-    logoVideo.onended = () => {
-        splash.classList.add('fade-out');
-        
-        const mainVideo = document.getElementById('bgVideo');
-        if (mainVideo) mainVideo.play();
-    };
-});
-
-
 const video = document.getElementById("bgVideo");
 
 function toggleButton(btn) {
-    btn.classList.toggle("active");
-    if (video.paused) {
-        video.play();
-    } else {
-        video.pause();
-    }
+    btn.classList.toggle("active");
+
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
 }
 </script>
+
+
+<script>
+const tabs = document.querySelectorAll(".container-horizontal .tab");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+
+    // enlever l'état actif de tous les boutons
+    tabs.forEach(t => t.classList.remove("active"));
+
+    // activer uniquement celui cliqué
+    tab.classList.add("active");
+  });
+});
+</script>
+
+
+
+
+
+
 
 </body>
 </html>

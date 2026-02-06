@@ -175,7 +175,7 @@ body {
 
 .btn_map {
     position: fixed;
-    right: 0px;
+    right: -2px;
     bottom: 50px;
     z-index: 30;
     
