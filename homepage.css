@@ -1,0 +1,304 @@
+
+
+
+/* ========================= */
+/* RESET */
+/* ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins";
+    
+}
+
+/* ========================= */
+/* BODY */
+/* ========================= */
+body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ========================= */
+/* IPHONE */
+/* ========================= */
+.iphone {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: black;
+}
+
+/* ========================= */
+/* VIDEO BACKGROUND */
+/* ========================= */
+#bgVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+   
+}
+
+/* ========================= */
+/* UI AU-DESSUS */
+/* ========================= */
+.iphone > *:not(video) {
+    position: absolute;
+    z-index: 10;
+}
+
+/* ========================= */
+/* BARRE GLASS FIGMA */
+/* ========================= */
+.image-bottom {
+    bottom: -1px;
+    left: 0;
+    width: 390px;
+    height: 164px;
+    position: relative;
+
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    /* FORME EXACTE FIGMA */
+    clip-path: path("M196.176 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390V163H0V63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562V0H196.176V0.000976562Z");
+
+    border-top: 1px solid rgba(255,255,255,0.4);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ========================= */
+/* BOUTON PROFIL */
+/* ========================= */
+.btn-bottom {
+    bottom: 32px;
+    left: 55%;
+    transform: translateX(-50%);
+    img {
+        width: 31px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 35px;
+        left: 25px;
+    }
+}
+
+
+
+/* ========================= */
+/* BOUTON CARTE */
+/* ========================= */
+.btn-map {
+    bottom: -4px;
+    right: 0;
+    img {
+        width: 101px;
+        cursor: pointer;
+    }
+}
+
+
+
+/* ========================= */
+/* BOUTON PHOTO */
+/* ========================= */
+.btn-photo {
+    width: 50px;
+    bottom: 94px;
+    left: 171px;
+}
+
+/* ========================= */
+/* BOUTON PLAY / PAUSE */
+/* ========================= */
+.button {
+    width: 40px;
+    height: 40px;
+    background-color: #FFDBBB;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+
+    bottom: 99px;
+    left: 176px;
+
+    z-index: 11;
+
+    transition: all 0.5s ease;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+.button.active {
+    transform: scale(0.5);
+    border-radius: 6px;
+}
+
+.container-horizontal {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 22px;
+    bottom: 30px;
+    left: 104px;  
+    width: 185px;
+    overflow-x: auto;         /* scroll horizontal */
+    white-space: nowrap;
+    padding: 5px;
+    scrollbar-width: none;    /* Firefox */
+    /* boutons texte uniquement */
+    button {
+        display: inline-block;
+        background: none;         /* pas de fond */
+        border: none;  
+        padding: 4px 9px;            /* enlève le padding par défaut */
+        margin-right: 20px;       /* ESPACEMENT entre boutons */
+        font-size: 16px;
+        color: #ffffff;
+        cursor: pointer;
+        white-space: nowrap;
+        border-radius: 19px;
+        /* hover */
+        &:hover {
+            text-decoration: none;
+            color: #FFDBBB;
+        }
+        /* focus clavier */
+        &:focus {
+            outline: none;
+            text-decoration: none;
+        }
+        /* bouton actif */
+        &.active {
+            background-color: rgba(255, 255, 255, 0.25);
+
+            
+            color: #FFDBBB;
+            transition: all 0.25s ease;
+        }
+    }
+}
+
+/* cacher scrollbar Chrome / Edge / Safari */
+.container-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+.goutte {
+    position: absolute;
+    bottom: 128px;
+    right: 24px;
+}
+
+.goutte img {
+    width: 86px;
+    cursor: pointer;
+}
+
+.goutte2 {
+    position: absolute;
+    top: 351px;
+    right: 131px;
+}
+
+.goutte2 img {
+    width: 18px;
+    cursor: pointer;
+}
+
+
+
+
+
+/*
+.glass {
+  color: rgba(255, 255, 255, 0.85);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.04)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    0 10px 24px rgba(0, 0, 0, 0.2);
+
+  border-radius: 22px;
+  bottom: 34px;
+  left: 145px;
+  width: 105px;
+  height: 34px;
+  z-index: 20;
+
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+
+  
+
+
+}
+
+
+
+ Reflet liquide 
+.glass::before {
+  content: "";
+  position: absolute;
+  top: -70%;
+  left: -40%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.35),
+    transparent 55%
+  );
+  opacity: 0.4;
+  pointer-events: none;
+  transform: rotate(25deg);
+
+}
+
+
+
+.glass:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+
+.glass:active {
+  transform: scale(0.97);
+}*/

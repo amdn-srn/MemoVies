@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>MemoVies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="slide.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        /* Styles pour le carousel avec ratio 1:2 et aperçu des slides */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            overflow: hidden; /* Masque le débordement */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        .carousel-track img {
+            width: 250px;
+            height: 500px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 12px;
+            user-select: none;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            opacity: 0.4;
+            filter: brightness(0.7);
+        }
+        
+        .carousel-track img.active {
+            transform: scale(1.05);
+            opacity: 1;
+            filter: brightness(1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            font-size: 28px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .carousel-btn:hover:not(:disabled) {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-btn.prev {
+            left: 10px;
+        }
+        
+        .carousel-btn.next {
+            right: 10px;
+        }
+        
+        .carousel-btn:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
+        .iphone {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Indicateurs de position (optionnel) */
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+
+        .carousel-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s;
+        }
+
+        .carousel-dots span.active {
+            background: rgba(255, 255, 255, 1);
+            width: 24px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone">
+        <div class="box">
+            <h1>Nom</h1>
+            <button class="top-btn" aria-label="Retour">
+                <img src="retour1.svg" alt="Icône retour">
+            </button>
+        </div>
+
+        <div class="scroll-container scrollbar" id="scrollContainer">
+            <div><img src="image1.png" alt="Souvenir 1" class="active"></div>
+            <div><img src="image2.png" alt="Souvenir 2"></div>
+            <div><img src="image3.png" alt="Souvenir 3"></div>
+        </div>
+            
+        <!-- VIDÉO DE FOND (optionnelle) -->
+        <video id="bgVideo" loop muted playsinline style="display: none;">
+            <source src="background-video.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+
+        <!-- BARRE GLASS (forme Figma) -->
+        <div class="image-bottom">
+            <!-- Bouton profil -->
+            <a href="profil.html" class="btn-bottom" aria-label="Profil">
+                <img src="profil_icon.svg" alt="Icône profil">
+            </a>
+        </div>
+
+        <!-- Bouton carte -->
+        <a href="maps.html" class="btn-map" aria-label="Afficher la carte">
+            <img src="carte.png" alt="Icône carte">
+        </a>
+
+
+        <!-- Bouton photo -->
+        <img src="btn_photo.png" class="btn-photo" alt="Bouton photo">
+
+        <!-- Bouton play / pause -->
+        <button class="button" onclick="toggleButton(this)" aria-label="Lecture/Pause"></button>
+
+        <!-- Bouton scroll -->
+        <div class="container-horizontal">
+            <button>Personnel</button>
+            <button>Historique</button>
+            <button>Tous</button>
+        </div>
+
+        <button class="glass" aria-label="Filtre"></button>
+    </div>
+
+    <script>
+        // ===== GESTION VIDÉO =====
+        function toggleButton(btn) {
+            btn.classList.toggle("active");
+            const video = document.getElementById("bgVideo");
+            
+            if (video) {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            }
+        }
+
+    
+            const carousel = document.querySelector(".carousel");
+            const carouselContainer = document.querySelector(".carousel-container");
+            const track = document.querySelector(".carousel-track");
+            const slides = document.querySelectorAll(".carousel-track img");
+            const prevBtn = document.querySelector(".carousel-btn.prev");
+            const nextBtn = document.querySelector(".carousel-btn.next");
+            const dots = document.querySelectorAll(".carousel-dots span");
+
+            if (!carousel || !track || !slides.length) {
+                console.error('Éléments du carousel manquants !');
+                return;
+            }
+
+            let currentIndex = 0;
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            let startTransform = 0;
+
+            /* ===== CALCUL DYNAMIQUE DU CENTRAGE ===== */
+            function calculateCenterOffset() {
+                const containerWidth = carouselContainer.offsetWidth;
+                const slideWidth = slides[0].offsetWidth;
+                const slideGap = 20;
+                
+                // Position de la slide active (distance depuis le début du track)
+                const slidePosition = currentIndex * (slideWidth + slideGap);
+                
+                // Offset pour centrer la slide active
+                const centerOffset = (containerWidth - slideWidth) / 2;
+                
+                return slidePosition - centerOffset;
+            }
+
+            /* ===== MISE À JOUR POSITION ET STYLE ===== */
+            function updateCarousel(animate = true) {
+                if (animate) {
+                    track.style.transition = "transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)";
+                } else {
+                    track.style.transition = "none";
+                }
+                
+                const offset = calculateCenterOffset();
+                track.style.transform = `translateX(-${offset}px)`;
+                
+                // Mise à jour de la classe active sur les slides
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentIndex);
+                });
+                
+                // Mise à jour des dots
+                if (dots.length > 0) {
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+                
+                updateButtonStates();
+            }
+
+            /* ===== ÉTAT DES BOUTONS ===== */
+            function updateButtonStates() {
+                if (prevBtn) prevBtn.disabled = currentIndex === 0;
+                if (nextBtn) nextBtn.disabled = currentIndex === slides.length - 1;
+            }
+
+            /* ===== BOUTONS NAVIGATION ===== */
+            if (prevBtn) {
+                prevBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateCarousel(true);
+                    }
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (currentIndex < slides.length - 1) {
+                        currentIndex++;
+                        updateCarousel(true);
+                    }
+                });
+            }
+
+            /* ===== DRAG & DROP ===== */
+            carousel.addEventListener("mousedown", handleDragStart);
+            carousel.addEventListener("touchstart", handleDragStart, { passive: false });
+
+            function handleDragStart(e) {
+                if (e.target.closest('.carousel-btn')) return;
+                
+                isDragging = true;
+                startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+                startTransform = calculateCenterOffset();
+                
+                track.style.transition = "none";
+                carousel.style.cursor = "grabbing";
+                
+                if (e.type === 'touchstart') {
+                    e.preventDefault();
+                }
+            }
+
+            document.addEventListener("mousemove", handleDragMove);
+            document.addEventListener("touchmove", handleDragMove, { passive: false });
+
+            function handleDragMove(e) {
+                if (!isDragging) return;
+                
+                currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+                const delta = startX - currentX;
+                const newTransform = startTransform + delta;
+                
+                track.style.transform = `translateX(-${newTransform}px)`;
+                
+                if (e.type === 'touchmove') {
+                    e.preventDefault();
+                }
+            }
+
+            document.addEventListener("mouseup", handleDragEnd);
+            document.addEventListener("touchend", handleDragEnd);
+
+            function handleDragEnd(e) {
+                if (!isDragging) return;
+                
+                isDragging = false;
+                carousel.style.cursor = "grab";
+                
+                const movedBy = startX - currentX;
+                const threshold = 50;
+                
+                if (movedBy > threshold && currentIndex < slides.length - 1) {
+                    currentIndex++;
+                } else if (movedBy < -threshold && currentIndex > 0) {
+                    currentIndex--;
+                }
+                
+                updateCarousel(true);
+            }
+
+            /* ===== SUPPORT CLAVIER ===== */
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowLeft" && currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel(true);
+                } else if (e.key === "ArrowRight" && currentIndex < slides.length - 1) {
+                    currentIndex++;
+                    updateCarousel(true);
+                }
+            });
+
+            /* ===== RESIZE ===== */
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    updateCarousel(false);
+                }, 100);
+            });
+
+            /* ===== INITIALISATION ===== */
+            carousel.style.cursor = "grab";
+            
+            // Attendre que les images soient chargées pour un calcul précis
+            Promise.all(Array.from(slides).map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.addEventListener('load', resolve);
+                    img.addEventListener('error', resolve);
+                });
+            })).then(() => {
+                updateCarousel(false);
+            });
+
+
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('scrollContainer');
+            function removeLazy() {
+                const images = slider.querySelectorAll('img[loading="lazy"]');
+                images.forEach((img) => {
+                    img.removeAttribute('loading');
+                });
+            }
+            window.addEventListener('load', () => {
+                if (window.DetectIt.primaryInput === 'touch') {
+                    removeLazy();
+                }
+            });
+            let isDragging = false;
+            let startX;
+            let scrollLeft;
+            slider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                slider.classList.add('dragging');
+                startX = e.pageX;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => {
+                isDragging = false;
+                slider.classList.remove('dragging');
+            });
+            slider.addEventListener('mouseup', () => {
+                isDragging = false;
+                slider.classList.remove('dragging');
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const x = e.pageX;
+                const walk = (x - startX) * 1.5; // vitesse de défilement
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        })
+  </script>
+
+</body>
+</html>

@@ -1,56 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>MemoVies</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>MemoVies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="iphone">
 
-    <!-- Vidéo background -->
-    <video id="bgVideo" muted playsinline>
-        <source src="video5.mp4" type="video/mp4">
-    </video> 
+    <!-- Vidéo background -->
+    <video id="bgVideo" muted playsinline>
+        <source src="video5.mp4" type="video/mp4">
+    </video> 
 
-    <a href="slide.html" class="goutte">
-            <img src="Vector.svg" alt="">
-        </a>
+    <a href="slide.html" class="goutte">
+            <img src="Vector.svg" alt="">
+        </a>
 
-    <!-- BARRE GLASS (forme Figma) -->
-    <div class="image-bottom">
-        <!-- Bouton profil -->
-        <a href="profil.html" class="btn-bottom">
-            <img src="profil_icon.svg" alt="">
-        </a>
-        
-    </div>
+    <!-- BARRE GLASS (forme Figma) -->
+    <div class="image-bottom">
+        <!-- Bouton profil -->
+        <a href="profil.html" class="btn-bottom">
+            <img src="profil_icon.svg" alt="">
+        </a>
+        
+    </div>
 
-    
+    
 
-    <!-- Bouton carte -->
-    <a href="maps.html" class="btn-map">
-        <img src="carte.png" alt="">
-    </a>
+    <!-- Bouton carte -->
+    <a href="maps.html" class="btn-map">
+        <img src="carte.png" alt="">
+    </a>
 
-   
-    <!-- Bouton photo -->
-    <img src="btn_photo.png" class="btn-photo" alt="">
+   
+    <!-- Bouton photo -->
+    <img src="btn_photo.png" class="btn-photo" alt="">
 
-    <!-- Bouton play / pause -->
-    <button class="button" onclick="toggleButton(this)"></button>
+    <!-- Bouton play / pause -->
+    <button class="button" onclick="toggleButton(this)"></button>
 
-     <!-- Bouton scroll -->
-    <div class="container-horizontal">
-        <button class="tab">Personnel</button>
-        <button class="tab">Historique</button>
-        <button class="tab">Tous</button>
-    </div>
+     <!-- Bouton scroll -->
+    <div class="container-horizontal">
+        <button class="tab">Personnel</button>
+        <button class="tab">Historique</button>
+        <button class="tab">Tous</button>
+    </div>
 
 
 </div>
@@ -59,13 +60,13 @@
 const video = document.getElementById("bgVideo");
 
 function toggleButton(btn) {
-    btn.classList.toggle("active");
+    btn.classList.toggle("active");
 
-    if (video.paused) {
-        video.play();
-    } else {
-        video.pause();
-    }
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
 }
 </script>
 
@@ -74,14 +75,14 @@ function toggleButton(btn) {
 const tabs = document.querySelectorAll(".container-horizontal .tab");
 
 tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
+  tab.addEventListener("click", () => {
 
-    // enlever l'état actif de tous les boutons
-    tabs.forEach(t => t.classList.remove("active"));
+    // enlever l'état actif de tous les boutons
+    tabs.forEach(t => t.classList.remove("active"));
 
-    // activer uniquement celui cliqué
-    tab.classList.add("active");
-  });
+    // activer uniquement celui cliqué
+    tab.classList.add("active");
+  });
 });
 </script>
 
