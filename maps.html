@@ -2,70 +2,58 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoVies</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="maps.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="maps_content">
-    <div class="nav_bottom">
-        <svg class="nav-shape" viewBox="0 0 390 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M196.176 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390V163H0V63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562V0H196.176V0.000976562Z" fill="rgba(0, 0, 0, 0.3)" />
-            <path d="M0 63H68.1924C118.408 41.7184 145.061 0.0966583 196 0.000976562C247.115 0.0965256 273.768 41.7183 323.983 63H390" stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" fill="none" />
-        </svg>
+<div class="iphone">
 
-        <div class="btn_profil">
-            <a href="./profil.html" class="btn-profil">
-                <img src="./profil_icon.svg" alt="profil">
-            </a>
-        </div>
+    <!-- CARTE -->
+    <div id="map"></div>
 
-        <div class="btn_map">
-            <a href="#" class="btn-map">
-                <img src="./carte.png" alt="carte">
-            </a>
-        </div>
-            
-        <div class="btn_plus">
-            <img src="./plus_icon.png" class="plus-icon" alt="plus"> 
-        </div>
-      
-        <div class="btn_fond"></div>
-        <button class="btn_play" onclick="toggleButton(this)">
-            <div class="btn_circle"></div>
-        </button>
-
-        <div class="container-horizontal">
-            <button>Personnel</button>
-            <button>Historique</button>
-            <button>Tous</button>
-            <div class="glass-indicator"></div>
-        </div>
+    <!-- UI -->
+    <div class="image-bottom">
+        <a href="profil.html" class="btn-bottom">
+            <img src="profil_icon.svg" alt="">
+        </a>
     </div>
+
+
+
+    <img src="btn_photo.png" class="btn-photo" alt="">
+
+    <button class="button" onclick="toggleButton(this)"></button>
+
+    <div class="container-horizontal" id="slider">
+        <button class="tab">Personnel</button>
+        <button class="tab">Historique</button>
+        <button class="tab">Tous</button>
+    </div>
+
+
 </div>
 
-<div id="map"></div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js">
-    
-</script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-/* ========================= */
-/* UI & ANIMATIONS */
-/* ========================= */
-function toggleButton(btn) {
-    // On redirige vers la nouvelle page
-    window.location.href = "./index.html"; 
-}
-
 
 /* ========================= */
-/* INITIALISATION CARTE */
+/* CARTE */
 /* ========================= */
 const map = L.map('map', {
     zoomControl: false
@@ -76,65 +64,206 @@ L.tileLayer(
     { attribution: '© OpenStreetMap © CARTO' }
 ).addTo(map);
 
+/* ========================= */
+/* ICÔNE SVG PERSONNALISÉE */
+/* ========================= */
 const souvenirIcon = L.icon({
-    iconUrl: './ici.svg',
+    iconUrl: 'goutte.svg',
     iconSize: [42, 42],
-    iconAnchor: [21, 42],
+    iconAnchor: [21, 42],   // bas-centre
     popupAnchor: [0, -42]
 });
 
+/* ========================= */
+/* LIEUX */
+/* ========================= */
 const souvenirs = [
-    { titre: "Restaurant avec maman", coords: [48.8566, 2.3522] },
-    { titre: "Tour Eiffel", coords: [48.8584, 2.2945] },
-    { titre: "Louvre", coords: [48.8606, 2.3376] },
-    { titre: "Ma demande en mariage", coords: [48.88804, 2.33993] },
-    { titre: "Notre premier appartement", coords: [48.82654, 2.36611] },
-    { titre: "Premier week-end ensemble à Lyon", coords: [45.7640, 4.8357] },
-    { titre: "Coucher de soleil à Marseille", coords: [43.2965, 5.3698] },
-    { titre: "Vacances d’été à Nice", coords: [43.7102, 7.2620] },
-    { titre: "Balade romantique à Annecy", coords: [45.8992, 6.1294] },
-    { titre: "Premier Noël ensemble à Strasbourg", coords: [48.5734, 7.7521] },
-    { titre: "Road trip à Bordeaux", coords: [44.8378, -0.5792] },
-    { titre: "Pique-nique au bord de la Loire", coords: [47.9029, 1.9093] },
-    { titre: "Concert mémorable à Lille", coords: [50.6292, 3.0573] },
-    { titre: "Escapade à Mont-Saint-Michel", coords: [48.6360, -1.5115] },
-    { titre: "Premier bain de mer ensemble à Biarritz", coords: [43.4832, -1.5586] },
-    { titre: "Week-end improvisé à Nantes", coords: [47.2184, -1.5536] },
-    { titre: "Fête d’anniversaire surprise à Rennes", coords: [48.1173, -1.6778] },
-    { titre: "Randonnée dans les Vosges", coords: [48.0674, 7.0735] },
-    { titre: "Soirée cinéma à Toulouse", coords: [43.6047, 1.4442] },
-    { titre: "Premier festival ensemble à Avignon", coords: [43.9493, 4.8055] },
-    { titre: "Balade en vélo à La Rochelle", coords: [46.1603, -1.1511] },
-    { titre: "Vacances à Saint-Malo", coords: [48.6493, -2.0257] },
-    { titre: "Dîner romantique à Reims", coords: [49.2583, 4.0317] },
-    { titre: "Découverte des châteaux de la Loire", coords: [47.3936, 0.6892] },
-    { titre: "Premier feu d’artifice ensemble à Cannes", coords: [43.5528, 7.0174] },
-    { titre: "Week-end cocooning à Colmar", coords: [48.0795, 7.3585] },
-    { titre: "Promenade main dans la main à Dijon", coords: [47.3220, 5.0415] },
-    { titre: "Souvenir d’hiver à Chamonix", coords: [45.9237, 6.8694] },
-    { titre: "Découverte de la Bretagne à Quimper", coords: [47.9961, -4.1029] },
-    { titre: "Pause café mémorable à Clermont-Ferrand", coords: [45.7772, 3.0870] },
-    { titre: "Week-end détente à Aix-les-Bains", coords: [45.6926, 5.9088] },
-    { titre: "Première nuit à la belle étoile en Ardèche", coords: [44.5446, 4.3722] },
-    { titre: "Escapade amoureuse à Sarlat", coords: [44.8890, 1.2160] },
-    { titre: "Souvenir précieux à Carcassonne", coords: [43.2130, 2.3516] },
-    { titre: "Dernières vacances avant le mariage à Ajaccio", coords: [41.9192, 8.7386] }
+    {
+        titre: "Restaurant avec maman",
+        coords: [48.8566, 2.3522]
+    },
+    {
+        titre: "Tour Eiffel",
+        coords: [48.8584, 2.2945]
+    },
+    {
+        titre: "Louvre",
+        coords: [48.8606, 2.3376]
+    },
+    {
+        titre: "Ma demande en mariage",
+        coords: [48.88804, 2.33993]
+    },
+    {
+        titre: "Notre premier appartement",
+        coords: [48.82654, 2.36611]
+    },
+    {
+    titre: "Premier week-end ensemble à Lyon",
+    coords: [45.7640, 4.8357]
+},
+{
+    titre: "Coucher de soleil à Marseille",
+    coords: [43.2965, 5.3698]
+},
+{
+    titre: "Vacances d’été à Nice",
+    coords: [43.7102, 7.2620]
+},
+{
+    titre: "Balade romantique à Annecy",
+    coords: [45.8992, 6.1294]
+},
+{
+    titre: "Premier Noël ensemble à Strasbourg",
+    coords: [48.5734, 7.7521]
+},
+{
+    titre: "Road trip à Bordeaux",
+    coords: [44.8378, -0.5792]
+},
+{
+    titre: "Pique-nique au bord de la Loire",
+    coords: [47.9029, 1.9093]
+},
+{
+    titre: "Concert mémorable à Lille",
+    coords: [50.6292, 3.0573]
+},
+{
+    titre: "Escapade à Mont-Saint-Michel",
+    coords: [48.6360, -1.5115]
+},
+{
+    titre: "Premier bain de mer ensemble à Biarritz",
+    coords: [43.4832, -1.5586]
+},
+{
+    titre: "Week-end improvisé à Nantes",
+    coords: [47.2184, -1.5536]
+},
+{
+    titre: "Fête d’anniversaire surprise à Rennes",
+    coords: [48.1173, -1.6778]
+},
+{
+    titre: "Randonnée dans les Vosges",
+    coords: [48.0674, 7.0735]
+},
+{
+    titre: "Soirée cinéma à Toulouse",
+    coords: [43.6047, 1.4442]
+},
+{
+    titre: "Premier festival ensemble à Avignon",
+    coords: [43.9493, 4.8055]
+},
+{
+    titre: "Balade en vélo à La Rochelle",
+    coords: [46.1603, -1.1511]
+},
+{
+    titre: "Vacances à Saint-Malo",
+    coords: [48.6493, -2.0257]
+},
+{
+    titre: "Dîner romantique à Reims",
+    coords: [49.2583, 4.0317]
+},
+{
+    titre: "Découverte des châteaux de la Loire",
+    coords: [47.3936, 0.6892]
+},
+{
+    titre: "Premier feu d’artifice ensemble à Cannes",
+    coords: [43.5528, 7.0174]
+},
+{
+    titre: "Week-end cocooning à Colmar",
+    coords: [48.0795, 7.3585]
+},
+{
+    titre: "Promenade main dans la main à Dijon",
+    coords: [47.3220, 5.0415]
+},
+{
+    titre: "Souvenir d’hiver à Chamonix",
+    coords: [45.9237, 6.8694]
+},
+{
+    titre: "Découverte de la Bretagne à Quimper",
+    coords: [47.9961, -4.1029]
+},
+{
+    titre: "Pause café mémorable à Clermont-Ferrand",
+    coords: [45.7772, 3.0870]
+},
+{
+    titre: "Week-end détente à Aix-les-Bains",
+    coords: [45.6926, 5.9088]
+},
+{
+    titre: "Première nuit à la belle étoile en Ardèche",
+    coords: [44.5446, 4.3722]
+},
+{
+    titre: "Escapade amoureuse à Sarlat",
+    coords: [44.8890, 1.2160]
+},
+{
+    titre: "Souvenir précieux à Carcassonne",
+    coords: [43.2130, 2.3516]
+},
+{
+    titre: "Dernières vacances avant le mariage à Ajaccio",
+    coords: [41.9192, 8.7386]
+}
+
+    
+    
 ];
 
+/* ========================= */
+/* MARQUEURS */
+/* ========================= */
 souvenirs.forEach(item => {
     L.marker(item.coords, { icon: souvenirIcon })
         .addTo(map)
         .bindPopup(`<strong>${item.titre}</strong>`);
 });
 
-/* Refresh de la carte pour éviter les zones grises */
+/* ========================= */
+/* FIX LEAFLET MOBILE */
+/* ========================= */
 window.addEventListener('load', () => {
     map.invalidateSize();
 });
 
-/* Empêcher le scroll de la carte quand on touche l'interface */
+/* ========================= */
+/* UI */
+/* ========================= */
+    function toggleButton(btn) {
+    // On redirige vers la nouvelle page
+    window.location.href = "./index.html"; 
+}
+
 map.getContainer().addEventListener('touchstart', e => {
     e.stopPropagation();
+});
+</script>
+
+<script>
+const tabs = document.querySelectorAll(".container-horizontal .tab");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+
+    // enlever l'état actif de tous les boutons
+    tabs.forEach(t => t.classList.remove("active"));
+
+    // activer uniquement celui cliqué
+    tab.classList.add("active");
+  });
 });
 </script>
 

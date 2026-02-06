@@ -98,7 +98,7 @@ body {
 /* BOUTON CARTE */
 /* ========================= */
 .btn-map {
-    bottom: -4px;
+    bottom: -6px;
     right: 0;
     img {
         width: 101px;

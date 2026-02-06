@@ -132,19 +132,19 @@
         <div class="box">
             <h1>Nom</h1>
             <button class="top-btn" aria-label="Retour">
-                <img src="retour1.svg" alt="Icône retour">
+                <img src="./retour1.svg" alt="Icône retour"  >
             </button>
         </div>
 
         <div class="scroll-container scrollbar" id="scrollContainer">
-            <div><img src="image1.png" alt="Souvenir 1" class="active"></div>
-            <div><img src="image2.png" alt="Souvenir 2"></div>
-            <div><img src="image3.png" alt="Souvenir 3"></div>
+            <div><img src="./image1.png" alt="Souvenir 1" class="active"></div>
+            <div><img src="./image2.png" alt="Souvenir 2"></div>
+            <div><img src="./image3.png" alt="Souvenir 3"></div>
         </div>
             
         <!-- VIDÉO DE FOND (optionnelle) -->
         <video id="bgVideo" loop muted playsinline style="display: none;">
-            <source src="background-video.mp4" type="video/mp4">
+            <source src="./background-video.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
         </video>
 
@@ -158,12 +158,12 @@
 
         <!-- Bouton carte -->
         <a href="maps.html" class="btn-map" aria-label="Afficher la carte">
-            <img src="carte.png" alt="Icône carte">
+            <img src="./carte.png" alt="Icône carte">
         </a>
 
 
         <!-- Bouton photo -->
-        <img src="btn_photo.png" class="btn-photo" alt="Bouton photo">
+        <img src="./btn_photo.png" class="btn-photo" alt="Bouton photo">
 
         <!-- Bouton play / pause -->
         <button class="button" onclick="toggleButton(this)" aria-label="Lecture/Pause"></button>
@@ -179,19 +179,11 @@
     </div>
 
     <script>
-        // ===== GESTION VIDÉO =====
-        function toggleButton(btn) {
-            btn.classList.toggle("active");
-            const video = document.getElementById("bgVideo");
-            
-            if (video) {
-                if (video.paused) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-            }
-        }
+
+            function toggleButton(Btn) {
+    // On redirige vers la nouvelle page
+    window.location.href = "./index.html"; 
+}
 
     
             const carousel = document.querySelector(".carousel");
